@@ -21,18 +21,18 @@ describe('player', () => {
     movePlayerToRight()
     expect(player.x).toBe(2)
   })
-  it('should move to Top', () => {
-    const { movePlayerToTop, player } = usePlayerStore()
+  it('should move to Up', () => {
+    const { movePlayerToUp, player } = usePlayerStore()
     player.x = 1
     player.y = 1
-    movePlayerToTop()
+    movePlayerToUp()
     expect(player.y).toBe(0)
   })
-  it('should move to Bottom', () => {
-    const { movePlayerToBottom, player } = usePlayerStore()
+  it('should move to Down', () => {
+    const { movePlayerToDown, player } = usePlayerStore()
     player.x = 1
     player.y = 1
-    movePlayerToBottom()
+    movePlayerToDown()
     expect(player.y).toBe(2)
   })
 })

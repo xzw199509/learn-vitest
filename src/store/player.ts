@@ -12,11 +12,14 @@ export const usePlayerStore = defineStore("player", () => {
   function movePlayerToRight() {
     player.x += 1
   }
-  function movePlayerToTop() {
+  function movePlayerToUp() {
     player.y -= 1
+    console.log('movePlayerToUp');
+    
   }
-  function movePlayerToBottom() {
+  function movePlayerToDown() {
     player.y += 1
+    console.log('movePlayerToDown');
   }
-  return { player, movePlayerToLeft, movePlayerToRight, movePlayerToTop, movePlayerToBottom }
+  return { player, movePlayerToLeft, movePlayerToRight, movePlayerToUp, movePlayerToDown }
 })
