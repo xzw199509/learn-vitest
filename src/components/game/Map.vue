@@ -19,13 +19,7 @@
 <script setup lang="ts">
 import floorImg from '../../assets/floor.png'
 import wallImg from '../../assets/wall.png'
-
-const map = [
-  [1, 1, 1, 1, 1, 1],
-  [1, 2, 2, 2, 2, 1],
-  [1, 2, 2, 2, 2, 1],
-  [1, 2, 2, 2, 2, 1],
-  [1, 1, 1, 1, 1, 1],
-]
+import { useMapStore } from '../../store/map'
+const { map } = useMapStore()
 </script>
 <style scoped></style>
