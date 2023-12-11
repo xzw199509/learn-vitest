@@ -6,10 +6,10 @@ beforeEach(() => {
   setActivePinia(createPinia())
 })
 it("should move to left when press ArrowLeft", () => {
-  const {player} =usePlayerStore()
-  player.x = 1
+  const { player } = usePlayerStore()
+  player.x = 2
   player.y = 1
   useMove()
-  window.dispatchEvent(new KeyboardEvent("keyup",{code:"ArrowLeft"}))
-  expect(player.x).toBe(0)
+  window.dispatchEvent(new KeyboardEvent("keyup", { code: "ArrowLeft" }))
+  expect(player.x).toBe(1)
 })
