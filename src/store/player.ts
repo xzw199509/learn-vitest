@@ -8,6 +8,7 @@ export const usePlayerStore = defineStore("player", () => {
     x: 1,
     y: 1,
   })
+  const { isWall } = useMapStore()
   function _move(dx: number, dy: number) {
     const nextPosition = {
       x: player.x + dx,
@@ -16,19 +17,19 @@ export const usePlayerStore = defineStore("player", () => {
     }
     if (isWall(nextPosition)) return
 
-    const { findCargo } = useCargoStore()
+    const { findCargo, moveCargo } = useCargoStore()
     // const cargo = cargos.find((c) => {
     //   return c.x === player.x - 1 && c.y === player.y
     // })
     const cargo = findCargo(nextPosition)
     if (cargo) {
-      cargo.x += dx
-      cargo.y += dy
+      const isMoveCargo = moveCargo(cargo, dx, dy)
+      if (!isMoveCargo) return
     }
     player.x += dx
     player.y += dy
   }
-  const { isWall } = useMapStore()
+
   function movePlayerToLeft() {
     _move(-1, 0)
     // if (isWall({ x: player.x - 1, y: player.y })) return
