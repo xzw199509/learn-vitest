@@ -115,7 +115,7 @@ describe('player', () => {
     })
 
     it('should push  a cargo to right', () => {
-      const { addCargo, createCargo, clearCargo } = useCargoStore()
+      const { addCargo, createCargo } = useCargoStore()
       const cargo = createCargo({ x: 2, y: 1 })
       addCargo(cargo)
 
@@ -140,7 +140,7 @@ describe('player', () => {
       expect(cargo.y).toBe(3)
     })
     it('should push  a cargo to up', () => {
-      const { addCargo, createCargo, clearCargo } = useCargoStore()
+      const { addCargo, createCargo } = useCargoStore()
       const cargo = createCargo({ x: 2, y: 2 })
       addCargo(cargo)
 
