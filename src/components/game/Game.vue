@@ -8,6 +8,10 @@
     <template v-for="cargo in cargos" :key="index">
       <Cargo :cargo="cargo"></Cargo>
     </template>
+    <template></template>
+    <div v-if="game.isCameCompleted" class="absolute top-48">
+      <button>下一关</button>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -17,6 +21,10 @@ import Cargo from './Cargo.vue'
 import Target from './Target.vue'
 import { useCargoStore } from '../../store/cargo'
 import { useTargetStore } from '../../store/target'
+import { useGameStore } from '../../store/game'
+
+const { game } = useGameStore()
+
 const { cargos, createCargo, addCargo } = useCargoStore()
 const { targets } = useTargetStore()
 addCargo(createCargo({ x: 2, y: 2 }))
