@@ -3,11 +3,21 @@ import { it, expect, describe, beforeEach } from 'vitest';
 
 import { useCargoStore } from '../cargo'
 import { useGameStore } from '../game';
+import { useMapStore } from '../map';
 import { useTargetStore } from '../target';
 
 describe("game", () => {
   beforeEach(() => {
     setActivePinia(createPinia())
+    let map = [
+      [1, 1, 1, 1, 1, 1],
+      [1, 2, 2, 2, 2, 1],
+      [1, 2, 2, 2, 2, 1],
+      [1, 2, 2, 2, 2, 1],
+      [1, 1, 1, 1, 1, 1],
+    ]
+    const { setupMap } = useMapStore()
+    setupMap(map)
   })
   it("should game completed", () => {
     const { addCargo, createCargo, moveCargo } = useCargoStore()

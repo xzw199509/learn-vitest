@@ -6,7 +6,7 @@ interface Target {
   y: number
 }
 export const useTargetStore = defineStore("target", () => {
-  const targets = reactive<Target[]>([{ x: 4, y: 3 }, { x: 5, y: 3 }])
+  const targets = reactive<Target[]>([])
   function addTarget(target: Target) {
     targets.push(target)
   }
