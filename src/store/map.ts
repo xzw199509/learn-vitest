@@ -6,7 +6,7 @@ export enum MapTile {
   WALL = 1,
   FLOOR = 2
 }
-type Map = MapTile[][]
+export type Map = MapTile[][]
 
 
 export const useMapStore = defineStore("map", () => {
