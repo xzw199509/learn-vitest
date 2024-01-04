@@ -1,5 +1,6 @@
 import { createPinia, setActivePinia } from 'pinia';
 import { it, expect, describe, beforeEach } from 'vitest';
+import { LevelGameData } from '../../game/gameData';
 
 import { useCargoStore } from '../cargo'
 import { useGameStore } from '../game';
@@ -82,15 +83,96 @@ describe("game", () => {
         },
       ],
     }
-    setupGame(levelGameData)
-    const { player } = usePlayerStore()
-    const { map } = useMapStore()
-    const { cargos } = useCargoStore()
-    const { targets } = useTargetStore()
-    expect(player.x).toBe(levelGameData.player.x)
-    expect(player.y).toBe(levelGameData.player.y)
-    expect(map).toEqual(levelGameData.map)
-    expect(cargos.length).toBe(levelGameData.cargos.length)
-    expect(targets.length).toBe(levelGameData.targets.length)
+    const gameData = [levelGameData]
+    setupGame(gameData)
+    expectSetupLevelGameData(levelGameData)
+  })
+  it('should to next level', () => {
+    const { game, setupGame, toNextLevel } = useGameStore()
+
+    const levelGameData = {
+      player: {
+        x: 1,
+        y: 1,
+      },
+      map: [
+        [1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 2, 2, 2, 2, 2, 2, 1],
+        [1, 2, 2, 2, 2, 2, 2, 1],
+        [1, 2, 2, 2, 2, 2, 2, 1],
+        [1, 2, 2, 2, 2, 2, 2, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1],
+      ],
+      cargos: [
+        {
+          x: 2,
+          y: 2,
+        },
+        {
+          x: 3,
+          y: 4,
+        },
+      ],
+      targets: [
+        {
+          x: 4,
+          y: 3,
+        },
+        {
+          x: 6,
+          y: 3,
+        },
+      ],
+    }
+    const secondLevelGameData = {
+      player: {
+        x: 1,
+        y: 1,
+      },
+      map: [
+        [1, 1, 1, 1, 1],
+        [1, 2, 2, 2, 1],
+        [1, 2, 2, 2, 1],
+        [1, 2, 2, 2, 1],
+      ],
+      cargos: [
+        {
+          x: 2,
+          y: 2,
+        },
+        {
+          x: 3,
+          y: 4,
+        },
+      ],
+      targets: [
+        {
+          x: 4,
+          y: 3,
+        },
+        {
+          x: 6,
+          y: 3,
+        },
+      ],
+    }
+    const gameData = [levelGameData, secondLevelGameData]
+    setupGame(gameData)
+
+    toNextLevel()
+    expect(game.level).toBe(2)
+    expectSetupLevelGameData(secondLevelGameData)
   })
 })
+
+function expectSetupLevelGameData(levelGameData: LevelGameData) {
+  const { player } = usePlayerStore()
+  const { map } = useMapStore()
+  const { cargos } = useCargoStore()
+  const { targets } = useTargetStore()
+  expect(player.x).toBe(levelGameData.player.x)
+  expect(player.y).toBe(levelGameData.player.y)
+  expect(map).toEqual(levelGameData.map)
+  expect(cargos.length).toBe(levelGameData.cargos.length)
+  expect(targets.length).toBe(levelGameData.targets.length)
+}

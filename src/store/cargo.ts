@@ -19,8 +19,9 @@ export const useCargoStore = defineStore("cargo", () => {
   function addCargo(cargo: Cargo) {
     cargos.push(cargo)
   }
-  function clearCargo() {
-    cargos.length = 0
+  function cleanAllCargo() {
+    // cargos.length = 0
+    cargos.splice(0, cargos.length)
   }
   function findCargo(position: Position) {
     return cargos.find((c) => {
@@ -48,7 +49,7 @@ export const useCargoStore = defineStore("cargo", () => {
     cargos,
     addCargo,
     createCargo,
-    clearCargo,
+    cleanAllCargo,
     findCargo,
     moveCargo
   }

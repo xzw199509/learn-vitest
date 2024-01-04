@@ -101,7 +101,7 @@ describe('player', () => {
       setupMap(map)
     })
     it('should push  a cargo to left', () => {
-      const { addCargo, createCargo, clearCargo } = useCargoStore()
+      const { addCargo, createCargo } = useCargoStore()
       const cargo = createCargo({ x: 2, y: 1 })
       addCargo(cargo)
 
@@ -111,7 +111,6 @@ describe('player', () => {
       movePlayerToLeft()
       expect(player.x).toBe(2)
       expect(cargo.x).toBe(1)
-      clearCargo()
     })
 
     it('should push  a cargo to right', () => {
@@ -125,7 +124,6 @@ describe('player', () => {
       movePlayerToRight()
       expect(player.x).toBe(2)
       expect(cargo.x).toBe(3)
-      // clearCargo()
     })
     it('should push  a cargo to down', () => {
       const { addCargo, createCargo } = useCargoStore()
@@ -150,7 +148,6 @@ describe('player', () => {
       movePlayerToUp()
       expect(player.y).toBe(2)
       expect(cargo.y).toBe(1)
-      // clearCargo()
     })
     it('should not push cargo when cargo hits wall', () => {
       const { addCargo, createCargo } = useCargoStore()

@@ -20,5 +20,8 @@ export const useTargetStore = defineStore("target", () => {
       t.x === position.x && t.y === position.y
     )
   }
-  return { targets, addTarget, createTarget, findTarget }
+  function cleanAllTarget() {
+    targets.splice(0, targets.length)
+  }
+  return { targets, addTarget, createTarget, findTarget, cleanAllTarget }
 })
