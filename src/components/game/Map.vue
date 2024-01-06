@@ -4,10 +4,10 @@
       <div v-for="(col, j) in map[i]">
         <!-- {{ row }} __{{ col }} -->
         <!-- {{ map[i][j] }} -->
-        <template v-if="map[i][j] === 1">
+        <template v-if="map[i][j] === MapTile.WALL">
           <img :src="wallImg" alt="" />
         </template>
-        <template v-else-if="map[i][j] === 2">
+        <template v-else-if="map[i][j] === MapTile.FLOOR">
           <img :src="floorImg" alt="" />
         </template>
       </div>
@@ -20,6 +20,7 @@
 import floorImg from '../../assets/floor.png'
 import wallImg from '../../assets/wall.png'
 import { useMapStore } from '../../store/map'
+import { MapTile } from '@/store/map';
 const { map } = useMapStore()
 </script>
 <style scoped></style>
