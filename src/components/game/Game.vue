@@ -5,7 +5,7 @@
       <Target :x="target.x" :y="target.y"></Target>
     </template>
     <Player></Player>
-    <template v-for="cargo in cargos" :key="index">
+    <template v-for="cargo in cargos" :key="cargo.id">
       <Cargo :cargo="cargo"></Cargo>
     </template>
     <template></template>

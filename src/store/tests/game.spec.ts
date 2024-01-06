@@ -1,6 +1,6 @@
 import { createPinia, setActivePinia } from 'pinia';
 import { it, expect, describe, beforeEach } from 'vitest';
-import { LevelGameData } from '../../game/gameData';
+import { gameData, LevelGameData } from '../../game/gameData';
 
 import { useCargoStore } from '../cargo'
 import { useGameStore } from '../game';
@@ -162,6 +162,13 @@ describe("game", () => {
     toNextLevel()
     expect(game.level).toBe(2)
     expectSetupLevelGameData(secondLevelGameData)
+  })
+  it('should be reset game completed when to next level', () => {
+    const { game, setupGame, toNextLevel } = useGameStore()
+    game.isCameCompleted = true
+    setupGame(gameData)
+    toNextLevel()
+    expect(game.isCameCompleted).toBe(false)
   })
 })
 
