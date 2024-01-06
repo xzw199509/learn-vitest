@@ -3,10 +3,11 @@
   <h1 className="text-3xl font-bold underline">
       Hello world!
   </h1> -->
-  <Game></Game>
+  <router-view></router-view>
+
 </template>
 <script setup lang="ts">
-import Game from './components/game/Game.vue';
+// import Game from './components/game/Game.vue';
 // import { useMapStore } from './store/map'
 
 // const { map } = useMapStore()
