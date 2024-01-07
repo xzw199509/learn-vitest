@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <div class="flex">
+  <div class="" >
+    <div class="flex" style="height:200px">
       <div class="w-4/6 bg-pink-400">
         <MapEdit></MapEdit>
       </div>
       <div>数据展示区</div>
     </div>
-    <div>
+    <div class="">
       <EditElementView></EditElementView>
     </div>
   </div> 

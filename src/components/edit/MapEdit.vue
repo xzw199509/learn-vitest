@@ -8,7 +8,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import { reactive } from 'vue'
 import MapBlock from './MapBlock.vue'
 
 import { useMapEditStore } from '@/store/edit/mapEdit'

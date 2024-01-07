@@ -12,16 +12,17 @@
 import floorImg from '@/assets/floor.png'
 import wallImg from '@/assets/wall.png'
 import { MapTile } from '@/store/map'
-import { reactive } from 'vue'
 import { useMapEditStore } from '@/store/edit/mapEdit'
+import { useEditElementStore } from '@/store/edit/editElement'
 
 const { map } = useMapEditStore()
-interface Props{
-  x:number
-  y:number
+const { getCurrentSelectedEditElement } = useEditElementStore()
+interface Props {
+  x: number
+  y: number
 }
 const props = defineProps<Props>()
 function handleClick() {
-  map[props.y][props.x] = MapTile.WALL
+  getCurrentSelectedEditElement().execute(props)
 }
 </script>
