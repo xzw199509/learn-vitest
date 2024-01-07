@@ -10,24 +10,38 @@
       <EditElement :edit-element="wallEditElement"></EditElement>
       <EditElement :edit-element="floorEditElement"></EditElement>
     </div>
+    <div class="flex space-x-2 m-2">
+      <h4>玩家:</h4>
+      <EditElement :edit-element="playerEditElement"></EditElement>
+    </div>
+    <div>当前选择：{{ selectedEditElementName }}</div>
   </div>
 </template>
 <script setup lang="ts">
 import EditElement from './EditElemnt.vue'
-import { wallEditElement, floorEditElement } from '@/store/edit/editElement'
+import { wallEditElement, floorEditElement, playerEditElement, useEditElementStore } from '@/store/edit/editElement'
 import { useMapEditStore } from '@/store/edit/mapEdit'
-import { watchEffect, toRefs } from 'vue'
+import { watchEffect, toRefs, computed } from 'vue'
 
 const { initMap, updateMapRow, updateMapCol } = useMapEditStore()
 const { row, col } = toRefs(useMapEditStore())
+
 initMap()
 watchEffect(() => {
-  if(!row.value) return
+  if (!row.value) return
   updateMapRow()
 })
 watchEffect(() => {
-  if(!col.value) return
+  if (!col.value) return
   updateMapCol()
+})
+const { getCurrentSelectedEditElement } = useEditElementStore()
+const selectedEditElementName = computed(() => {
+  if (!getCurrentSelectedEditElement()) {
+    return '没有选择'
+  } else {
+    return getCurrentSelectedEditElement()?.name
+  }
 })
 </script>
 

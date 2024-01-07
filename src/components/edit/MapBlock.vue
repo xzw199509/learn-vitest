@@ -1,5 +1,5 @@
 <template>
-  <div class="border border-white" @click="handleClick()" @mousedown="handleMouseDown" @mousemove="handleMouseMove">
+  <div class="" @click="handleClick()" @mousedown="handleMouseDown" @mousemove="handleMouseMove">
     <template v-if="map[props.y][props.x] === MapTile.WALL">
       <img :src="wallImg" alt="" draggable="false" />
     </template>
@@ -24,7 +24,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 function handleClick() {
-  getCurrentSelectedEditElement().execute(props)
+  getCurrentSelectedEditElement()?.execute(props)
 }
 
 const { startDrag, stopDrag, isDragging } = useDrag()
